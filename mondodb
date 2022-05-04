@@ -39,4 +39,34 @@
 
     db.books.find().sort({rating: -1}).limit(5).count()
 
-//
+//Nested Documents
+    {    
+        "title": "Abu Books",  
+        "author": "Abu",  
+        "pages": 100,  
+        "genres": ["movies","art"],  
+        "rating": 10,
+        "stock":{
+            "count": 21,
+            "price": 2000
+
+        },
+        "reviews":[
+            {"name":"Great Read", "body":"Lorem ipsum"},
+            {"name":"reviewer","body":"pure bliss"}
+        ]
+    }
+
+    db.newBooks.insertMany(
+        {"title": "Ben Books","author": "Ben","pages": 100,"genres": ["tales","fakiti"],"rating": 8,"stock":{"count": 19,"price": 2000},"reviews":[{"name":"reviewee","body":"his reviews"},{"name":"reviewer","body":"her reviews"}]},
+        {"title": "Abu Books","author": "Abu","pages": 100,"genres": ["movies","art"],"rating":5,"stock":{"count":22,"price":2300},"reviews":[{"name":"reviewee","body":"her reviews"},{"name":"reviewer","body":"his reviews"}]}
+        )
+
+
+//operators
+
+    //greater than
+    db.books.find({rating: {$gt: 7}})
+
+    //less than
+    db.books.find({rating: {$lt: 7}})
