@@ -79,3 +79,10 @@
 
     // rating > 7 or pages > 100 - OR
     db.books.find({$or: [{rating: {$gt: 7}}, {pages: {$gt: 200}}]})
+
+//Querying Arrays  - $in and $nin
+    //find all the books that the ratings are in the range 7-9
+    db.books.find({rating: {$in: [7,8,9]}})
+
+    //find all the books that the ratings are not in the range 
+    db.books.find({rating: {$nin: [8,9,10]}})
