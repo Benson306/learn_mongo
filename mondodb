@@ -80,9 +80,26 @@
     // rating > 7 or pages > 100 - OR
     db.books.find({$or: [{rating: {$gt: 7}}, {pages: {$gt: 200}}]})
 
-//Querying Arrays  - $in and $nin
+//$in and $nin
     //find all the books that the ratings are in the range 7-9
     db.books.find({rating: {$in: [7,8,9]}})
 
     //find all the books that the ratings are not in the range 
     db.books.find({rating: {$nin: [8,9,10]}})
+
+//Querying Arrays
+    //results include books with music genres and other genres
+    db.books.find({genres: "music"}) 
+
+    //find books with music genre only
+    db.books.find({genres: ["music"]})
+
+    //find books with music and guiding
+    db.books.find({genres: ["music","Guiding"]})
+
+    //find all books with music and guiding even if it has more genre arrays
+    db.books.find({genres: {$all: ["music","Guiding"] }})
+
+//querying docs based on nested docs(other objects)
+    //find all new books with reviews from 'reviewee'
+    db.newBooks.find({"reviews.name":"reviewee"})
