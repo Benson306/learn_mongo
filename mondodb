@@ -1,0 +1,42 @@
+//starting mongodb
+    service start mongod
+
+//moving to a dbs
+    use <db_name>
+
+// Adding Documents
+        //insert one
+    db.books.insertOne({title: "River and Source", author: "margaret ogolla", genres: ["Teaching","Guiding"], pages: 200, rating : 5})
+
+        //insert many
+    db.books.insertMany([{title:"mstahiki meya", author: "writter", pages: 200, rating: 8, genres: ["kiswahili","shairi"]},{title:"damu nyeusi", author: "mwandishi", pages: 210, rating: 9, genres: ["kelele","noise"]}])
+
+//Finding documents
+    db.books.find({pages: 200})
+
+    db.books.find({pages: 200, author: "margaret ogolla"}) //AND
+
+    //specifying what fields we want
+    db.books.find({pages: 200}, {title: 1, author: 1}) // we want title and author fieldsonly
+
+    db.books.find({}, {title: 1, author: 1}) // all books but dispaly only title and author fields
+
+    //Find one by ID
+    db.books.findOne({_id: ObjectId("62723ae017a8ce030584d0af")})
+
+
+//sorting and limiting
+    //counting
+    db.books.find({rating: 5}).count()
+
+    //limit
+    db.books.find().limit(3)
+
+    //sorting
+    db.books.find().sort({rating: 1}) // 1 for ascending and -1 for descending
+
+    //chaining them
+
+    db.books.find().sort({rating: -1}).limit(5).count()
+
+//
