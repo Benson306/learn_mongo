@@ -110,3 +110,25 @@
 
     //Delete many
     db.books.deleteMany({pages: 200})
+
+//update documents
+    //update one
+    db.books.updateOne({_id:ObjectId("626ea454afb4885a37dcf335")}, {$set: {pages: 150, rating: 9}})
+
+    //update many
+    db.books.updateMany({rating: 9}, {$set: {pages: 250}})
+
+    //increment operators -- increment by 2
+    db.books.updateOne({_id: ObjectId("626ea3deafb4885a37dcf334")}, {$inc: {pages: 2}})
+
+    // decrement operators
+    db.books.updateOne({_id: ObjectId("626ea3deafb4885a37dcf334")}, {$inc: {pages: -2}})
+
+    // remove an item from an array in a document
+    db.books.updateOne({_id:ObjectId("626ea454afb4885a37dcf335"),}, {$pull: {genres: "movies"}})
+    
+    // add an item to an array in a document
+    db.books.updateOne({_id:ObjectId("626ea454afb4885a37dcf335"),}, {$push: {genres: "movies"}})
+
+    //add several items to an array
+    db.books.updateOne({_id:ObjectId("626ea454afb4885a37dcf335"),}, {$push: {genres: {$each: ["one", "two"]}}})
