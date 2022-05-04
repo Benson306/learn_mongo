@@ -103,3 +103,10 @@
 //querying docs based on nested docs(other objects)
     //find all new books with reviews from 'reviewee'
     db.newBooks.find({"reviews.name":"reviewee"})
+
+//Deleting documents
+    //Delete One
+    db.books.deleteOne({_id: ObjectId("62723c5517a8ce030584d0b2")})
+
+    //Delete many
+    db.books.deleteMany({pages: 200})
